@@ -7,8 +7,8 @@ import os
 
 def preprocess_data():
     # Path default
-    input_file = "../bank_raw/bank.csv"
-    output_dir = "../processed_data"
+    input_file = "bank_raw/bank.csv"
+    output_dir = "processed_data"
 
     print(f"Loading dataset dari {input_file}...")
     df = pd.read_csv(input_file)
