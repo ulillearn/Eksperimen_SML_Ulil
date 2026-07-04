@@ -1,0 +1,29 @@
+name: Preprocess Dataset
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  preprocess:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: pip install pandas scikit-learn numpy
+
+      - name: Run preprocessing script
+        run: python preprocessing/automate.py
+
+      - name: Commit and push updated preprocessed files
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Update preprocessed data [skip ci]"
+          file_pattern: processed_data/*.csv
